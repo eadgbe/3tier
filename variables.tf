@@ -1,3 +1,5 @@
+# Brainboard auto-generated file.
+
 variable "a_records" {
   type    = list(string)
   default = ["1.2.3.4"]
@@ -63,12 +65,12 @@ variable "db_subnets" {
 
 variable "dns_zone" {
   type    = string
-  default = "webapp.brainboard.co"
+  default = "mexicolingo.com"
 }
 
 variable "domains" {
   type    = list(string)
-  default = ["domain.com"]
+  default = ["mexicolingo.com"]
 }
 
 variable "ec2_amount_limitation" {
@@ -83,7 +85,7 @@ variable "ec2_threshold" {
 
 variable "email" {
   type    = string
-  default = "contact@brainboard.co"
+  default = "contact@mexicolingo.com"
 }
 
 variable "env" {
@@ -93,7 +95,7 @@ variable "env" {
 
 variable "hosted_zone" {
   type    = string
-  default = "webapp.brainboard.co"
+  default = "mexicolingo.com"
 }
 
 variable "image_id" {
@@ -109,12 +111,12 @@ variable "ipset_value" {
 
 variable "rds_db_name" {
   type    = string
-  default = "brainboard"
+  default = "tier3"
 }
 
 variable "rds_master_password" {
   type    = string
-  default = "Bra1nb0ard123"
+  default = "Temp000Tier3"
 }
 
 variable "rds_master_username" {
