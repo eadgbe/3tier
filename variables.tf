@@ -1,5 +1,3 @@
-# Brainboard auto-generated file.
-
 variable "a_records" {
   type    = list(string)
   default = ["1.2.3.4"]
