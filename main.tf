@@ -82,6 +82,10 @@ resource "aws_subnet" "web_b" {
 resource "aws_route53_zone" "aws_route53_zone_6" {
   tags = merge(var.tags, {})
   name = var.hosted_zone
+
+  vpc {
+    vpc_id = aws_vpc.main.id
+  }
 }
 
 resource "aws_route53_record" "a_record" {
@@ -90,6 +94,10 @@ resource "aws_route53_record" "a_record" {
   ttl     = 300
   records = var.a_records
   name    = "a_record"
+
+  latency_routing_policy {
+    region = "us-east-1"
+  }
 }
 
 resource "aws_route53_record" "cname" {
@@ -98,31 +106,9 @@ resource "aws_route53_record" "cname" {
   ttl     = 300
   records = var.domains
   name    = "cname"
-}
 
-resource "aws_waf_web_acl" "waf_web_acl" {
-  tags        = merge(var.tags, {})
-  name        = "webAcl"
-  metric_name = "webAcl"
-  count       = var.env == "prod" ? 1 : 0
-
-  default_action {
-    type = "ALLOW"
-  }
-}
-
-resource "aws_waf_rule" "aws_waf_rule_10" {
-  tags        = merge(var.tags, {})
-  name        = "WAFRule"
-  metric_name = "WAFRule"
-}
-
-resource "aws_waf_ipset" "aws_waf_ipset_11" {
-  name = "IPSet"
-
-  ip_set_descriptors {
-    value = var.ipset_value
-    type  = "IPV4"
+  latency_routing_policy {
+    region = "us-east-1"
   }
 }
 
@@ -237,7 +223,7 @@ resource "aws_eip" "web_b" {
 
 resource "aws_launch_template" "launch_template" {
   tags          = merge(var.tags, {})
-  instance_type = "t3.medium"
+  instance_type = "t2.micro"
   image_id      = var.image_id
 }
 
